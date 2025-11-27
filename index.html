@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/akbartus/A-Frame-Component-Postprocessing/dist/post-processing.min.js"></script>
+    <title>Group Act</title>
+</head>
+<body>
+    <a-scene id="scene"
+        fog="type: linear; color: #000011; near: 5; far: 60"
+        renderer="antialias: true; precision: high">
+
+        <!-- Assets -->
+        <a-assets>
+            <a-asset-item id="moon-model" src="moon/scene.gltf"></a-asset-item>
+            <a-asset-item id="scene-model" src="scene/scene.gltf"></a-asset-item>
+            <a-asset-item id="mercedes-model" src="mercedes-benz/scene.gltf"></a-asset-item>
+            <a-asset-item id="chevrolet-model" src="chevrolet_corvette/scene.gltf"></a-asset-item>
+            <a-asset-item id="mitsubishi-model" src="mitsubishi_lancer/scene.gltf"></a-asset-item>
+            <a-asset-item id="chevrolet-model" src="chevrolet_corvette/scene.gltf"></a-asset-item>
+            <a-asset-item id="dirtyCar-model" src="dirtyCar/scene.gltf"></a-asset-item>
+            <a-mixin id="lamp" light="type: point; color: #FFEF00; intensity: 1; distance: 10"></a-mixin>
+        </a-assets>
+        
+        <!-- Player Camera -->
+        <a-entity 
+            id="player"
+            camera
+            look-controls
+            wasd-controls="acceleration: 40"
+            position="40 10.5 10">
+        </a-entity>
+
+        <!-- Lighting -->
+        <a-light type="ambient" color="#404040" intensity="0.1"></a-light>
+        <a-light type="directional" position="0 5 5" intensity="0.3" color="#FFFFFF"></a-light>
+        
+        <!-- Main Road Lights -->
+        <a-entity mixin="lamp" position="27 12 7.5"></a-entity>
+        <a-entity mixin="lamp" position="27 12 15.5"></a-entity>
+        <a-entity mixin="lamp" position="27 12 23.5"></a-entity>
+        <a-entity mixin="lamp" position="27 12 31.5"></a-entity>
+        
+        <!-- Hotel Road Lights -->
+        <a-entity mixin="lamp" position="11 12 7.5"></a-entity>
+        <a-entity mixin="lamp" position="11 12 15.5"></a-entity>
+        <a-entity mixin="lamp" position="11 12 23.5"></a-entity>
+        <a-entity mixin="lamp" position="11 12 31.5"></a-entity>
+        
+        <!-- Hotel Entrance Lights -->
+        <a-entity mixin="lamp" position="1.5 10 15.5"></a-entity>
+        <a-entity mixin="lamp" position="1.5 10 23.5"></a-entity>
+
+        <!-- Highway End Lights -->
+        <a-entity mixin="lamp" position="27 10 49"></a-entity>
+        <a-entity mixin="lamp" position="26.5 10 -10.5"></a-entity>
+
+
+        <!-- GLTF Scene Model -->
+        <a-entity 
+            gltf-model="#scene-model"
+            position="0 -15 0"
+            scale="5 5 5"
+            shadow="cast: true; receive: true">
+        </a-entity>
+
+        <a-entity 
+            gltf-model="#moon-model"
+            position="-50 80 0"
+            scale="7 7 7"
+            material="fog: false">
+            <a-entity 
+                light="type: point; color: #FFFFDD; intensity: 3; distance: 50"
+                position="0 0 15">
+            </a-entity>
+        </a-entity>
+        <a-entity 
+            light="type: directional; color: #AACCFF; intensity: 0.2"
+            position="-10 80 0">
+        </a-entity>
+        
+
+        <!-- GLTF Static Car Models -->
+        <a-entity 
+            gltf-model="#dirtyCar-model"
+            position="5 8.8 15"
+            scale="0.01 0.01 0.01"
+            shadow="cast: true; receive: true">
+        </a-entity>
+        <a-entity 
+            gltf-model="#dirtyCar-model"
+            position="9 8.8 24"
+            scale="0.01 0.01 0.01"
+            rotation="0 180 0"
+            shadow="cast: true; receive: true">
+        </a-entity>
+        <a-entity 
+            gltf-model="#chevrolet-model"
+            position="5 8.8 29"
+            scale="0.023 0.023 0.023"
+            rotation="0 180 0"
+            shadow="cast: true; receive: true">
+        </a-entity>
+        <a-entity 
+            gltf-model="#mercedes-model"
+            position="10.5 8.8 10"
+            scale="0.04 0.04 0.04"
+            rotation="0 -90 0"
+            shadow="cast: true; receive: true">
+        </a-entity>
+        <a-entity 
+            gltf-model="#mitsubishi-model"
+            position="9 8.8 35"
+            scale="0.011 0.011 0.011"
+            rotation="0 180 0"
+            shadow="cast: true; receive: true">
+        </a-entity>
+
+        <!-- GLTF Animated Car Models -->
+        <!--Dirty Car 1-->
+        <a-entity 
+            gltf-model="#dirtyCar-model"
+            position="31 8.8 24"
+            scale="0.01 0.01 0.01"
+            rotation="0 0 0"
+            shadow="cast: true; receive: true"
+            
+            animation__1="property: position; to: 31 8.8 110; dur: 9000; easing: linear; startEvents: start, animationcomplete__9"
+            animation__2="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: animationcomplete__1"
+            animation__3="property: position; to: 36 8.8 110; dur: 2000; easing: linear; startEvents: animationcomplete__2"
+            animation__4="property: rotation; to: 0 180 0; dur: 1000; easing: linear; startEvents: animationcomplete__3"
+            animation__5="property: position; to: 36 8.8 -75; dur: 19000; easing: linear; startEvents: animationcomplete__4"
+            animation__6="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: animationcomplete__5"
+            animation__7="property: position; to: 31 8.8 -75; dur: 2000; easing: linear; startEvents: animationcomplete__6"
+            animation__8="property: rotation; to: 0 0 0; dur: 1000; easing: linear; startEvents: animationcomplete__7"
+            animation__9="property: position; to: 31 8.8 24; dur: 10000; easing: linear; startEvents: animationcomplete__8">
+        </a-entity>
+
+        <!--Dirty Car 2-->
+        <a-entity 
+            gltf-model="#dirtyCar-model"
+            position="36 8.8 30"
+            scale="0.01 0.01 0.01"
+            rotation="0 180 0"
+            shadow="cast: true; receive: true"
+            
+            animation__1="property: position; to: 36 8.8 -75; dur: 11000; easing: linear; startEvents: start, animationcomplete__9"
+            animation__2="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: animationcomplete__1"
+            animation__3="property: position; to: 31 8.8 -75; dur: 2000; easing: linear; startEvents: animationcomplete__2"
+            animation__4="property: rotation; to: 0 0 0; dur: 1000; easing: linear; startEvents: animationcomplete__3"
+            animation__5="property: position; to: 31 8.8 110; dur: 19000; easing: linear; startEvents: animationcomplete__4"
+            animation__6="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: animationcomplete__5"
+            animation__7="property: position; to: 36 8.8 110; dur: 2000; easing: linear; startEvents: animationcomplete__6"
+            animation__8="property: rotation; to: 0 180 0; dur: 1000; easing: linear; startEvents: animationcomplete__7"
+            animation__9="property: position; to: 36 8.8 30; dur: 8000; easing: linear; startEvents: animationcomplete__8">
+        </a-entity>
+
+        <!--Dirty Car 3-->
+        <a-entity 
+            gltf-model="#dirtyCar-model"
+            position="31 8.8 70"
+            scale="0.01 0.01 0.01"
+            rotation="0 0 0"
+            shadow="cast: true; receive: true"
+            
+            animation__1="property: position; to: 31 8.8 110; dur: 4000; easing: linear; startEvents: start, animationcomplete__9"
+            animation__2="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: animationcomplete__1"
+            animation__3="property: position; to: 36 8.8 110; dur: 2000; easing: linear; startEvents: animationcomplete__2"
+            animation__4="property: rotation; to: 0 180 0; dur: 1000; easing: linear; startEvents: animationcomplete__3"
+            animation__5="property: position; to: 36 8.8 -75; dur: 19000; easing: linear; startEvents: animationcomplete__4"
+            animation__6="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: animationcomplete__5"
+            animation__7="property: position; to: 31 8.8 -75; dur: 2000; easing: linear; startEvents: animationcomplete__6"
+            animation__8="property: rotation; to: 0 0 0; dur: 1000; easing: linear; startEvents: animationcomplete__7"
+            animation__9="property: position; to: 31 8.8 70; dur: 15000; easing: linear; startEvents: animationcomplete__8">
+        </a-entity>
+
+        <!--Chevrolet 1-->
+        <a-entity 
+            gltf-model="#chevrolet-model"
+            position="31 8.8 -10"
+            scale="0.023 0.023 0.023"
+            rotation="0 180 0"
+            
+            animation__1="property: position; to: 31 8.8 110; dur: 12000; easing: linear; startEvents: start, animationcomplete__9"
+            animation__2="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: animationcomplete__1"
+            animation__3="property: position; to: 36 8.8 110; dur: 2000; easing: linear; startEvents: animationcomplete__2"
+            animation__4="property: rotation; to: 0 0 0; dur: 1000; easing: linear; startEvents: animationcomplete__3"
+            animation__5="property: position; to: 36 8.8 -75; dur: 19000; easing: linear; startEvents: animationcomplete__4"
+            animation__6="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: animationcomplete__5"
+            animation__7="property: position; to: 31 8.8 -75; dur: 2000; easing: linear; startEvents: animationcomplete__6"
+            animation__8="property: rotation; to: 0 180 0; dur: 1000; easing: linear; startEvents: animationcomplete__7"
+            animation__9="property: position; to: 31 8.8 -10; dur: 7000; easing: linear; startEvents: animationcomplete__8">
+        </a-entity>
+
+        <!--Chevrolet 2-->
+        <a-entity 
+            gltf-model="#chevrolet-model"
+            position="36 8.8 10"
+            scale="0.023 0.023 0.023"
+            rotation="0 0 0"
+            shadow="cast: true; receive: true"
+            
+            animation__1="property: position; to: 36 8.8 -75; dur: 9000; easing: linear; startEvents: start, animationcomplete__9"
+            animation__2="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: animationcomplete__1"
+            animation__3="property: position; to: 31 8.8 -75; dur: 2000; easing: linear; startEvents: animationcomplete__2"
+            animation__4="property: rotation; to: 0 180 0; dur: 1000; easing: linear; startEvents: animationcomplete__3"
+            animation__5="property: position; to: 31 8.8 110; dur: 19000; easing: linear; startEvents: animationcomplete__4"
+            animation__6="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: animationcomplete__5"
+            animation__7="property: position; to: 36 8.8 110; dur: 2000; easing: linear; startEvents: animationcomplete__6"
+            animation__8="property: rotation; to: 0 0 0; dur: 1000; easing: linear; startEvents: animationcomplete__7"
+            animation__9="property: position; to: 36 8.8 10; dur: 10000; easing: linear; startEvents: animationcomplete__8">
+        </a-entity>
+
+        <!--Chevrolet - Lane 2-->
+        <a-entity 
+            gltf-model="#chevrolet-model"
+            position="36 8.8 -40"
+            scale="0.023 0.023 0.023"
+            rotation="0 180 0"
+            shadow="cast: true; receive: true"
+            
+            animation__1="property: position; to: 36 8.8 -75; dur: 4000; easing: linear; startEvents: start, animationcomplete__9"
+            animation__2="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: animationcomplete__1"
+            animation__3="property: position; to: 31 8.8 -75; dur: 2000; easing: linear; startEvents: animationcomplete__2"
+            animation__4="property: rotation; to: 0 180 0; dur: 1000; easing: linear; startEvents: animationcomplete__3"
+            animation__5="property: position; to: 31 8.8 110; dur: 19000; easing: linear; startEvents: animationcomplete__4"
+            animation__6="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: animationcomplete__5"
+            animation__7="property: position; to: 36 8.8 110; dur: 2000; easing: linear; startEvents: animationcomplete__6"
+            animation__8="property: rotation; to: 0 0 0; dur: 1000; easing: linear; startEvents: animationcomplete__7"
+            animation__9="property: position; to: 36 8.8 -40; dur: 15000; easing: linear; startEvents: animationcomplete__8">
+        </a-entity>
+
+        <!--Mercedes-->
+        <a-entity 
+            gltf-model="#mercedes-model"
+            position="37 8.8 -10"
+            scale="0.04 0.04 0.04"
+            rotation="0 -90 0"
+            shadow="cast: true; receive: true"
+            
+            animation__1="property: position; to: 37 8.8 -75; dur: 7000; easing: linear; startEvents: start, animationcomplete__9"
+            animation__2="property: rotation; to: 0 0 0; dur: 1000; easing: linear; startEvents: animationcomplete__1"
+            animation__3="property: position; to: 28.5 8.8 -75; dur: 2000; easing: linear; startEvents: animationcomplete__2"
+            animation__4="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: animationcomplete__3"
+            animation__5="property: position; to: 28.5 8.8 110; dur: 19000; easing: linear; startEvents: animationcomplete__4"
+            animation__6="property: rotation; to: 0 -180 0; dur: 1000; easing: linear; startEvents: animationcomplete__5"
+            animation__7="property: position; to: 37 8.8 110; dur: 2000; easing: linear; startEvents: animationcomplete__6"
+            animation__8="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: animationcomplete__7"
+            animation__9="property: position; to: 37 8.8 -10; dur: 12000; easing: linear; startEvents: animationcomplete__8">
+        </a-entity>
+
+        <!--Mitsubishi 1-->
+        <a-entity 
+            gltf-model="#mitsubishi-model"
+            position="31 8.8 -35"
+            scale="0.011 0.011 0.011"
+            rotation="0 0 0"
+            shadow="cast: true; receive: true"
+            
+            animation__1="property: position; to: 31 8.8 110; dur: 15000; easing: linear; startEvents: start, animationcomplete__9"
+            animation__2="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: animationcomplete__1"
+            animation__3="property: position; to: 36 8.8 110; dur: 2000; easing: linear; startEvents: animationcomplete__2"
+            animation__4="property: rotation; to: 0 180 0; dur: 1000; easing: linear; startEvents: animationcomplete__3"
+            animation__5="property: position; to: 36 8.8 -75; dur: 19000; easing: linear; startEvents: animationcomplete__4"
+            animation__6="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: animationcomplete__5"
+            animation__7="property: position; to: 31 8.8 -75; dur: 2000; easing: linear; startEvents: animationcomplete__6"
+            animation__8="property: rotation; to: 0 0 0; dur: 1000; easing: linear; startEvents: animationcomplete__7"
+            animation__9="property: position; to: 31 8.8 -35; dur: 5000; easing: linear; startEvents: animationcomplete__8">
+        </a-entity>
+
+        <!--Mitsubishi 2-->
+        <a-entity 
+            gltf-model="#mitsubishi-model"
+            position="36 8.8 80"
+            scale="0.011 0.011 0.011"
+            rotation="0 180 0"
+            shadow="cast: true; receive: true"
+            
+            animation__1="property: position; to: 36 8.8 -75; dur: 16000; easing: linear; startEvents: start, animationcomplete__9"
+            animation__2="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: animationcomplete__1"
+            animation__3="property: position; to: 31 8.8 -75; dur: 2000; easing: linear; startEvents: animationcomplete__2"
+            animation__4="property: rotation; to: 0 0 0; dur: 1000; easing: linear; startEvents: animationcomplete__3"
+            animation__5="property: position; to: 31 8.8 110; dur: 19000; easing: linear; startEvents: animationcomplete__4"
+            animation__6="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: animationcomplete__5"
+            animation__7="property: position; to: 36 8.8 110; dur: 2000; easing: linear; startEvents: animationcomplete__6"
+            animation__8="property: rotation; to: 0 180 0; dur: 1000; easing: linear; startEvents: animationcomplete__7"
+            animation__9="property: position; to: 36 8.8 80; dur: 3000; easing: linear; startEvents: animationcomplete__8">
+        </a-entity>
+
+        <!--Mitsubishi 3-->
+        <a-entity 
+            gltf-model="#mitsubishi-model"
+            position="31 8.8 100"
+            scale="0.011 0.011 0.011"
+            rotation="0 0 0"
+            shadow="cast: true; receive: true"
+            
+            animation__1="property: position; to: 31 8.8 110; dur: 1000; easing: linear; startEvents: start, animationcomplete__9"
+            animation__2="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: animationcomplete__1"
+            animation__3="property: position; to: 36 8.8 110; dur: 2000; easing: linear; startEvents: animationcomplete__2"
+            animation__4="property: rotation; to: 0 180 0; dur: 1000; easing: linear; startEvents: animationcomplete__3"
+            animation__5="property: position; to: 36 8.8 -75; dur: 19000; easing: linear; startEvents: animationcomplete__4"
+            animation__6="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: animationcomplete__5"
+            animation__7="property: position; to: 31 8.8 -75; dur: 2000; easing: linear; startEvents: animationcomplete__6"
+            animation__8="property: rotation; to: 0 0 0; dur: 1000; easing: linear; startEvents: animationcomplete__7"
+            animation__9="property: position; to: 31 8.8 100; dur: 18000; easing: linear; startEvents: animationcomplete__8">
+        </a-entity>
+
+        <!-- Sky -->
+        <a-sky color="#000011"></a-sky>
+        </a-sky>
+    </a-scene>
+    <script src="script.js"></script>
+</body>
+</html>

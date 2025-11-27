@@ -1,0 +1,11 @@
+Model Information:
+* title:	Chevrolet Corvette (C4) coupe 1983
+* source:	https://sketchfab.com/3d-models/chevrolet-corvette-c4-coupe-1983-1324ed95855e4c29bce967df7dc1fd3e
+* author:	slowpoly (https://sketchfab.com/slowpoly)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Chevrolet Corvette (C4) coupe 1983" (https://sketchfab.com/3d-models/chevrolet-corvette-c4-coupe-1983-1324ed95855e4c29bce967df7dc1fd3e) by slowpoly (https://sketchfab.com/slowpoly) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
